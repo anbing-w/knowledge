@@ -5,7 +5,7 @@
 #include <ctype.h>
 
 #ifdef __PLINDROMESTRING__
-// ABCCBA,»ØÎÄ×Ö·û´®
+// ABCCBA,å›æ–‡å­—ç¬¦ä¸²
 int isPlindromeString1(const char *string)
 {
     const char *start = string;
@@ -72,7 +72,7 @@ int main(int argc, char **argv)
 
 #ifdef __REVERSESTRING__
 
-// ·´×ª×Ö·û´®£¬ABCD-DCBA
+// åè½¬å­—ç¬¦ä¸²ï¼ŒABCD-DCBA
 char *reverseString1(char *dest, const char *src)
 {
     assert(src != NULL);
@@ -132,7 +132,7 @@ int main(int argc, char **argv)
 #endif // DEBUG
 
 #ifdef __CHARTOINT__
-// ½«Êı×Ö×Ö·û´®×ª»»Îª¶ÔÓ¦µÄÊı×Ö£¬00st2427ytgj980
+// å°†æ•°å­—å­—ç¬¦ä¸²è½¬æ¢ä¸ºå¯¹åº”çš„æ•°å­—ï¼Œ00st2427ytgj980
 int charToInt(char *src)
 {
     short sign = 1;
@@ -154,27 +154,27 @@ int charToInt(char *src)
     return sign * num;
 }
 
-// ÕâÑùĞ´²»¶Ô£¬if£¬else ifÊÇ²¢ÁĞ¹ØÏµ£¬×Ö·û´®ÖĞÎŞÂÛÄÄÀï³öÏÖ-¶¼»á±ä³É¸ºÊı£¬Èç¹ûÒªÊ×Î»Îª-²ÅÎª¸ºµÄ»°¾Í²»ÄÜÕâÑùĞ´
+// è¿™æ ·å†™ä¸å¯¹ï¼Œifï¼Œelse ifæ˜¯å¹¶åˆ—å…³ç³»ï¼Œå­—ç¬¦ä¸²ä¸­æ— è®ºå“ªé‡Œå‡ºç°-éƒ½ä¼šå˜æˆè´Ÿæ•°ï¼Œå¦‚æœè¦é¦–ä½ä¸º-æ‰ä¸ºè´Ÿçš„è¯å°±ä¸èƒ½è¿™æ ·å†™
 int extractNumber(const char *str)
 {
     int len = strlen(str);
     int num = 0;
-    int sign = 1; // Õı¸ººÅ±êÖ¾£¬Ä¬ÈÏÎªÕıÊı
+    int sign = 1; // æ­£è´Ÿå·æ ‡å¿—ï¼Œé»˜è®¤ä¸ºæ­£æ•°
 
     for (int i = 0; i < len; i++)
     {
         char ch = str[i];
         if (ch == '-')
         {
-            sign = -1; // ³öÏÖ¸ººÅ£¬½«±êÖ¾ÉèÖÃÎª¸ºÊı
+            sign = -1; // å‡ºç°è´Ÿå·ï¼Œå°†æ ‡å¿—è®¾ç½®ä¸ºè´Ÿæ•°
         }
         else if (ch >= '0' && ch <= '9')
         {
-            num = num * 10 + (ch - '0'); // ÀÛ¼ÓÊı×Ö
+            num = num * 10 + (ch - '0'); // ç´¯åŠ æ•°å­—
         }
     }
 
-    return num * sign; // ·µ»Ø×îÖÕ½á¹û
+    return num * sign; // è¿”å›æœ€ç»ˆç»“æœ
 }
 
 char *extract_lowercase_letters(char *dest, const char *src)
@@ -201,16 +201,16 @@ int main()
     char str4[] = "-12-342-224";
     char dest[100];
     int num = 0;
-    num = atoi(str4); // atoi,Óöµ½·ÇÊı×Ö×Ö·û¾ÍÍ£Ö¹×ª»»
+    num = atoi(str4); // atoi,é‡åˆ°éæ•°å­—å­—ç¬¦å°±åœæ­¢è½¬æ¢
 
-    printf("%d\n", charToInt(str1)); // Êä³ö 1234
+    printf("%d\n", charToInt(str1)); // è¾“å‡º 1234
     memset(dest, 0, sizeof(dest));
     extract_lowercase_letters(dest, str2);
-    printf("%s\n", dest); // Êä³ö 123456
+    printf("%s\n", dest); // è¾“å‡º 123456
     memset(dest, 0, sizeof(dest));
     extract_lowercase_letters(dest, str3);
-    printf("%s\n", dest); // Êä³ö -1234
-    printf("%d\n", num);  // Êä³ö -1234
+    printf("%s\n", dest); // è¾“å‡º -1234
+    printf("%d\n", num);  // è¾“å‡º -1234
     return 0;
 }
 
@@ -409,7 +409,7 @@ int main(int argc, char **argv)
 {
     char mon[] = "aaaaaa";
     char son[] = "a";
-    // char *res = strstr(mon, "a1a"); // strstr(mon, son),ÕÒµ½µÚÒ»¸öÓësonÏàµÈµÄ×Ó×Ö·û´®·µ»Ø
+    // char *res = strstr(mon, "a1a"); // strstr(mon, son),æ‰¾åˆ°ç¬¬ä¸€ä¸ªä¸sonç›¸ç­‰çš„å­å­—ç¬¦ä¸²è¿”å›
     int num;
     // printf("%s\n", res);
     num = findSubStrNum2(mon, son);
@@ -492,7 +492,7 @@ int main()
 }
 #endif
 
-#if 1
+#ifdef __FIND_MAX_PUBLIX_STRING_
 
 void max_common_string(char *str1, char *str2) {
     int len1 = strlen(str1);
@@ -519,7 +519,7 @@ void max_common_string(char *str1, char *str2) {
         }
     }
 
-    printf("×î´ó¹«¹²×Ö·û´®Îª£º");
+    printf("æœ€å¤§å…¬å…±å­—ç¬¦ä¸²ä¸ºï¼š");
     for (i = max_end - max_len + 1; i <= max_end; i++) {
         printf("%c", str1[i]);
     }
@@ -528,10 +528,10 @@ void max_common_string(char *str1, char *str2) {
 int main() {
     char str1[100], str2[100];
 
-    printf("ÇëÊäÈëµÚÒ»¸ö×Ö·û´®£º");
+    printf("è¯·è¾“å…¥ç¬¬ä¸€ä¸ªå­—ç¬¦ä¸²ï¼š");
     scanf("%s", str1);
 
-    printf("ÇëÊäÈëµÚ¶ş¸ö×Ö·û´®£º");
+    printf("è¯·è¾“å…¥ç¬¬äºŒä¸ªå­—ç¬¦ä¸²ï¼š");
     scanf("%s", str2);
     printf("Just for test!!\n");
     //printf("Just for test!!\n");
