@@ -533,11 +533,7 @@ int main() {
 
     printf("请输入第二个字符串：");
     scanf("%s", str2);
-
-
-
-
-
+    printf("Just for test!!\n");
     max_common_string(str1, str2);
 
     return 0;
