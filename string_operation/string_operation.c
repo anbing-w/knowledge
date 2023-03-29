@@ -548,9 +548,10 @@ char *FindMaxCommonStr(char *shortstring, char *longstring)
     {
         return shortstring;
     }
-    for (int i = strlen(shortstring) - 1; i > 0; i--) // 从短字符串的长度开始往下遍历
+    int len = strlen(shortstring);
+    for (int i = (len - 1); i > 0; i--) // 从短字符串的长度开始往下遍历
     {
-        for (int j = 0; j <= strlen(shortstring) - i; j++) // 遍历从 j 开始长度为 i 的子串
+        for (int j = 0; j <= len - i; j++) // 遍历从 j 开始长度为 i 的子串
         {
             char *temp_str = (char *)malloc(256);// 创建一个临时字符串，长度为 256
             memcpy(temp_str, &shortstring[j], i);// 将 j 开始长度为 i 的子串复制到临时字符串中
@@ -559,6 +560,8 @@ char *FindMaxCommonStr(char *shortstring, char *longstring)
             {
                 return temp_str; // 如果是，则返回临时字符串
             }
+            free(temp_str);
+            temp_str = NULL;
         }
     }
     return NULL;
