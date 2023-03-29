@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#define __FIND_PUBLIC_STRING__
+#define __FIND_MAX_PUBLIX_STRING_
 
 #ifdef __PLINDROMESTRING__
 // ABCCBA,回文字符串
@@ -458,19 +458,48 @@ int findCommonStr(char *str1, char *str2)
     return count;
 }
 
+int FindCommonStrNum(char *str1, char *str2)
+{
+    if (str1 == NULL || str2 == NULL)
+    {
+        return 0;
+    }
+    int count = 0;
+    int len = strlen(str1);
+
+    for (int i = len; i > 0; i--) // 从str1的长度开始往下遍历
+    {
+        for (int j = 0; j <= len - i; j++) // 遍历从 j 开始长度为 i 的子串
+        {
+            char *temp_str = (char *)malloc(256); // 创建一个临时字符串，长度为 256
+            memcpy(temp_str, &str1[j], i);        // 将 j 开始长度为 i 的子串复制到临时字符串中
+            temp_str[i] = '\0';                   // 在临时字符串的结尾添加 '\0' 字符，表示字符串的结束
+            if (strstr(str2, temp_str) != NULL)   // 判断临时字符串是否是 str2 的子串
+            {
+                count++;                  // 如果是，则计数器加一
+                printf("%s\t", temp_str); // 输出临时字符串
+            }
+            memset(temp_str, 0, i * 4); // 将临时字符串清空
+        }
+    }
+    return count; // 返回公共子串的数量
+}
+
 int main()
 {
     char str1[] = "Hello, world!";
     char str2[] = "hello, world!";
-    int count = findCommonStr(str1, str2);
+    int count = FindCommonStrNum(str1, str2);
     printf("Found %d common strings\n", count);
     return 0;
 }
+
 #endif
 
 #ifdef __FIND_MAX_PUBLIX_STRING_
 
-void max_common_string(char *str1, char *str2) {
+void max_common_string(char *str1, char *str2)
+{
     int len1 = strlen(str1);
     int len2 = strlen(str2);
     int max_len = 0, max_end = 0;
@@ -479,16 +508,23 @@ void max_common_string(char *str1, char *str2) {
 
     memset(dp, 0, sizeof(dp));
 
-    for (i = 0; i < len1; i++) {
-        for (j = 0; j < len2; j++) {
-            if (str1[i] == str2[j]) {
-                if (i == 0 || j == 0) {
+    for (i = 0; i < len1; i++)
+    {
+        for (j = 0; j < len2; j++)
+        {
+            if (str1[i] == str2[j])
+            {
+                if (i == 0 || j == 0)
+                {
                     dp[i][j] = 1;
-                } else {
-                    dp[i][j] = dp[i-1][j-1] + 1;
+                }
+                else
+                {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
                 }
             }
-            if (dp[i][j] > max_len) {
+            if (dp[i][j] > max_len)
+            {
                 max_len = dp[i][j];
                 max_end = i;
             }
@@ -496,20 +532,50 @@ void max_common_string(char *str1, char *str2) {
     }
 
     printf("最大公共字符串为：");
-    for (i = max_end - max_len + 1; i <= max_end; i++) {
+    for (i = max_end - max_len + 1; i <= max_end; i++)
+    {
         printf("%c", str1[i]);
     }
 }
 
-int main() {
+char *FindMaxCommonStr(char *shortstring, char *longstring)
+{
+    if (shortstring == NULL || longstring == NULL)
+    {
+        return NULL;
+    }
+    if (strstr(longstring, shortstring) != NULL)
+    {
+        return shortstring;
+    }
+    for (int i = strlen(shortstring) - 1; i > 0; i--) // 从短字符串的长度开始往下遍历
+    {
+        for (int j = 0; j <= strlen(shortstring) - i; j++) // 遍历从 j 开始长度为 i 的子串
+        {
+            char *temp_str = (char *)malloc(256);// 创建一个临时字符串，长度为 256
+            memcpy(temp_str, &shortstring[j], i);// 将 j 开始长度为 i 的子串复制到临时字符串中
+            temp_str[i] = '\0';// 在临时字符串的结尾添加 '\0' 字符，表示字符串的结束
+            if (strstr(longstring, temp_str) != NULL)// 判断临时字符串是否是长字符串的子串
+            {
+                return temp_str; // 如果是，则返回临时字符串
+            }
+        }
+    }
+    return NULL;
+}
+
+int main()
+{
     char str1[100], str2[100];
+    char *result = NULL;
 
     printf("请输入第一个字符串：");
     scanf("%s", str1);
 
     printf("请输入第二个字符串：");
     scanf("%s", str2);
-    max_common_string(str1, str2);
+    result = FindMaxCommonStr(str1, str2);
+    printf("%s", result);
 
     return 0;
 }
