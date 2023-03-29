@@ -480,6 +480,8 @@ int FindCommonStrNum(char *str1, char *str2)
                 printf("%s\t", temp_str); // 输出临时字符串
             }
             memset(temp_str, 0, i * 4); // 将临时字符串清空
+            free(temp_str);
+            temp_str = NULL;
         }
     }
     return count; // 返回公共子串的数量
