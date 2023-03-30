@@ -17,11 +17,9 @@ int main(int argc, char **argv)
     int size = 0;
     T_STUDENT student;
     size = sizeof(student);
-    student.age = 15;
-    char *ptr = student.age;
+    student.age = 15;   
+    int *ptr = student.age;
     T_STUDENT* Pstu = (T_STUDENT*)((char*)ptr -((unsigned long)(&((T_STUDENT*)0)->age)));
-
-
 
     printf("the size of struct student is %d\n", size);
     printf("the size of struct student is %p\n", Pstu);
