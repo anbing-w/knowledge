@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-//#define __REWRITE__MEMCPY__
+#define __REWRITE__MEMCPY__
 
 #ifdef __REWRITE_STRCMP__
 /**
@@ -85,11 +85,10 @@ int main()
 
 char *my_strstr(const char *str1, const char *str2)
 {
-    assert(str1);
-    assert(str2);
-    char *s1 = NULL;
-    char *s2 = NULL;
-    char *cur = str1;
+    assert(str1 && str2 );
+    const char *s1 = str1;
+    const char *s2 = str2;
+    const char *cur = str1;
 
     // 如果子串一开始就是空，那么直接返回母串
     if (*str2 == '\0')
@@ -221,8 +220,8 @@ void *my_memcpy(void *dest, const void *src, size_t n)
 
 void *my_memmove(void *dest, void *src, size_t n)
 {
-    assert(dest != NULL);
-    assert(src != NULL);
+    // assert(dest != NULL);
+    // assert(src != NULL);
     char *pdest = (char *)dest;
     char *psrc = (char *)src;
     if ((psrc <= pdest) && ((psrc + n) >= pdest))
@@ -248,7 +247,7 @@ int main()
 {
     // test case 1: normal copy 
     char src1[] = "hello world"; 
-    char dest1[12] = ""; 
+    char dest1[12] = "0"; 
     my_memmove(dest1, src1, strlen(src1) + 1); 
     //assert(strcmp(dest1, "hello world") == 0);
     printf("dest1: %s\n", dest1);
@@ -325,7 +324,7 @@ int main()
 }
 #endif
 
-#if 1
+#ifdef __REWRITE_STRLEN__
 
 //创建临时变量
 size_t my_strlen1(const char *src)
@@ -382,5 +381,3 @@ int main(int argc, char** argv)
 
 
 #endif
-
-
