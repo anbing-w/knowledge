@@ -280,8 +280,6 @@ list *initList()
         return head;
     }
 }
-
-
 /*
     //主函数重调用
     list *head = initList();

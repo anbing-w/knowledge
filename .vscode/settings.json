@@ -1,6 +1,17 @@
 {
     "files.associations": {
-        "assert.h": "c"
+        "assert.h": "c",
+        "memory": "c",
+        "system_error": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "xlocale": "c",
+        "xlocinfo": "c",
+        "xlocnum": "c",
+        "xmemory": "c",
+        "xstring": "c",
+        "xtr1common": "c",
+        "xutility": "c"
     },
     "idf.adapterTargetName": "esp32s3",
     "idf.openOcdConfigs": [
