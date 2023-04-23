@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <assert.h>
 
 
@@ -25,6 +26,36 @@ union u3
 }U4;
 
 
+typedef union
+{
+    uint8_t Value;
+    uint8_t Byte;
+/*     struct 
+    {
+        unsigned BIT0:1;
+        unsigned BIT1:1;
+        unsigned BIT2:1;
+        unsigned BIT3:1;
+        unsigned BIT4:1;
+        unsigned BIT5:1;
+        unsigned BIT6:1;
+        unsigned BIT7:1;
+    }Bits; */
+}byte_t;
+
+
+    struct 
+    {
+        unsigned BIT0:1;
+        unsigned BIT1:1;
+        unsigned BIT2:1;
+        unsigned BIT3:1;
+        unsigned BIT4:1;
+        unsigned BIT5:1;
+        unsigned BIT6:1;
+        unsigned BIT7:1;
+    }Bits;
+
 int main(int argc, char **argv)
 {
     //测试结构体成员地址和推算结构体的地址
@@ -47,6 +78,10 @@ int main(int argc, char **argv)
     printf("the size of struct student is %#p\n", ptr3);
     printf("the size of struct student is %#p\n", Pstu);
     return 0; */
+    //byte_t byte_count;
+    printf("the size of byte_count is %d\n",sizeof(byte_t));
+    printf("the size of byte_count is %d\n",sizeof(Bits));
+
     U4.c[0] = 0x04;
     printf("%#p\n",&U4.c[0]);
     U4.c[1] = 0x03;
