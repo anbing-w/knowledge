@@ -2,17 +2,17 @@
 #include <stdio.h>
 #include <assert.h>
 
-#define __REWRITE__MEMCPY__
+#define __REWRITE__MYTEST__
 
 #ifdef __REWRITE_STRCMP__
 /**
- * @brief strcmp º¯Êı¸´ÏÖ
+ * @brief strcmp å‡½æ•°å¤ç°
  *
  * @return int
  */
 // int my_strcmp(const char *s1, const char *s2)
 // {
-//     while (*s1 == *s2) { //Ò»¸ö×Ö·ûÒ»¸ö×Ö·ûµÄ±È½Ï£¬Ö±µ½²»ÏàµÈ
+//     while (*s1 == *s2) { //ä¸€ä¸ªå­—ç¬¦ä¸€ä¸ªå­—ç¬¦çš„æ¯”è¾ƒï¼Œç›´åˆ°ä¸ç›¸ç­‰
 //         if (s1 == '\0')
 //         {
 //             return 0;
@@ -30,7 +30,7 @@ int My_strcmp(const char *str1, const char *str2)
     assert(NULL != str2);
     while (*(unsigned char *)str1 == *(unsigned char *)str2)
     {
-        if (*(unsigned char *)str1 == '\0') // ÒªĞ´³É==¡®0¡¯£¬·ñÔò²»¶Ô£¬ÇĞ¼Ç
+        if (*(unsigned char *)str1 == '\0') // è¦å†™æˆ==â€˜0â€™ï¼Œå¦åˆ™ä¸å¯¹ï¼Œåˆ‡è®°
         {
             return 0;
         }
@@ -44,7 +44,7 @@ int main()
 {
     char str1[] = "SaaORRY";
     char str2[] = "SORRY";
-    // ¾­¹ıÊÖËã¿É·¢ÏÖIµÄACSII=73£¬SµÄACSII=83,Ó¦¸Ã·µ»Ø-10
+    // ç»è¿‡æ‰‹ç®—å¯å‘ç°Içš„ACSII=73ï¼ŒSçš„ACSII=83,åº”è¯¥è¿”å›-10
     printf("%d\n", My_strcmp(str1, str2));
     printf("%d\n", strcmp(str1, str2));
     return 0;
@@ -53,19 +53,19 @@ int main()
 #ifdef __REWRITE__STRSTR__
 
 /* char *my_strstr(const char *str1, const char *str2)
-{ // const char *str·ÀÖ¹str±»ĞŞ¸Ä
+{ // const char *stré˜²æ­¢strè¢«ä¿®æ”¹
     assert(str1 != NULL);
     assert(str2 != NULL);
-    char *p1 = NULL; // ´´½¨Èı¸öÖ¸Õë£¬Ò»¸öÖ¸Ïòstr2£¬Á½¸öÖ¸Ïòstr1
+    char *p1 = NULL; // åˆ›å»ºä¸‰ä¸ªæŒ‡é’ˆï¼Œä¸€ä¸ªæŒ‡å‘str2ï¼Œä¸¤ä¸ªæŒ‡å‘str1
     char *p2 = NULL;
     char *pc = str1;
 
     while (*pc)
     {
-        p1 = pc; // pcµÄÄÚÈİ¸øp1
+        p1 = pc; // pcçš„å†…å®¹ç»™p1
         p2 = str2;
         while (*p1 = '\0' && *p2 == *p1)
-        { // Èç¹û²»ÏàµÈ£¬»òÕßstr2ÒÑ¾­µ½ÁË\0.»òÕßstr1²»¹»³¤£¬Ôò²»½øÈ¥
+        { // å¦‚æœä¸ç›¸ç­‰ï¼Œæˆ–è€…str2å·²ç»åˆ°äº†\0.æˆ–è€…str1ä¸å¤Ÿé•¿ï¼Œåˆ™ä¸è¿›å»
             {
                 p2++;
                 p1++;
@@ -85,12 +85,12 @@ int main()
 
 char *my_strstr(const char *str1, const char *str2)
 {
-    assert(str1 && str2 );
+    assert(str1 && str2);
     const char *s1 = str1;
     const char *s2 = str2;
     const char *cur = str1;
 
-    // Èç¹û×Ó´®Ò»¿ªÊ¼¾ÍÊÇ¿Õ£¬ÄÇÃ´Ö±½Ó·µ»ØÄ¸´®
+    // å¦‚æœå­ä¸²ä¸€å¼€å§‹å°±æ˜¯ç©ºï¼Œé‚£ä¹ˆç›´æ¥è¿”å›æ¯ä¸²
     if (*str2 == '\0')
     {
         return *str1;
@@ -100,7 +100,7 @@ char *my_strstr(const char *str1, const char *str2)
     {
         s1 = cur;
         s2 = str2;
-        while ((*s1 == *s2) && *s1 && *s2) // s1ºÍs2²»ÄÜ×ßµ½\0
+        while ((*s1 == *s2) && *s1 && *s2) // s1å’Œs2ä¸èƒ½èµ°åˆ°\0
         {
             s1++;
             s2++;
@@ -145,7 +145,7 @@ char *my_strcpy(char *dest, const char *src)
     assert(src != NULL);
     char *ptr = dest;
 
-    // ¼ÓÏÂÏÂÃæµÄÅĞ¶ÏµÄ»°£¬Ê¹ÓÃmemsetºó¾Í»á·µ»Ø
+    // åŠ ä¸‹ä¸‹é¢çš„åˆ¤æ–­çš„è¯ï¼Œä½¿ç”¨memsetåå°±ä¼šè¿”å›
     //  if (strlen(dest) < strlen(src))
     //  {
     //      return 0;
@@ -157,12 +157,12 @@ char *my_strcpy(char *dest, const char *src)
     *ptr = '\0';
     return dest;
 }
-// Ä£Äâstrncpy,strncpy·µ»ØµÄÊÇÄ¿±ê¿Õ¼äµÄÆğÊ¼µØÖ·
+// æ¨¡æ‹Ÿstrncpy,strncpyè¿”å›çš„æ˜¯ç›®æ ‡ç©ºé—´çš„èµ·å§‹åœ°å€
 char *my_strncpy(char *dest, const char *src, int n)
 {
     assert(dest && src);
-    char *ptr = dest; // ´æ´¢ÆğÊ¼µØÖ·
-    size_t i = 0;     // ¼ÇÂ¼¸´ÖÆ×Ö·û´®µÄ¸öÊı
+    char *ptr = dest; // å­˜å‚¨èµ·å§‹åœ°å€
+    size_t i = 0;     // è®°å½•å¤åˆ¶å­—ç¬¦ä¸²çš„ä¸ªæ•°
 
     while (*src != '\0' && i < n)
     {
@@ -245,18 +245,18 @@ void *my_memmove(void *dest, void *src, size_t n)
 
 int main()
 {
-    // test case 1: normal copy 
-    char src1[] = "hello world"; 
-    char dest1[12] = "0"; 
-    my_memmove(dest1, src1, strlen(src1) + 1); 
-    //assert(strcmp(dest1, "hello world") == 0);
+    // test case 1: normal copy
+    char src1[] = "hello world";
+    char dest1[12] = "0";
+    my_memmove(dest1, src1, strlen(src1) + 1);
+    // assert(strcmp(dest1, "hello world") == 0);
     printf("dest1: %s\n", dest1);
     // test case 2: overlapping memory regions
     char src2[] = "123456789";
-    //memset()
+    // memset()
     my_memmove(src2 + 1, src2, 7);
     printf("src2: %s\n", src2);
-   // assert(strcmp(src2, "121234567") == 0);
+    // assert(strcmp(src2, "121234567") == 0);
 
     // test case 3: null pointers
     // char* src3 = NULL;
@@ -293,10 +293,10 @@ char *my_strncat(char *dest, const char *src, size_t n)
     assert(src != NULL);
     char *pdest = dest;
     const char *psrc = src;
-/*  while (n >= strlen(psrc))
-    {
-        n = strlen(psrc);
-    } */
+    /*  while (n >= strlen(psrc))
+        {
+            n = strlen(psrc);
+        } */
     while (*pdest)
     {
         pdest++;
@@ -309,15 +309,14 @@ char *my_strncat(char *dest, const char *src, size_t n)
     return dest;
 }
 
-
 int main()
 {
     char src[] = " world";
     char dest[20] = "hello";
-    //my_strcat(dest, src);
+    // my_strcat(dest, src);
     printf("%s\n", dest);
 
-    //memset(dest+5, 0, sizeof(dest));
+    // memset(dest+5, 0, sizeof(dest));
     my_strncat(dest, src, 3);
     printf("%s\n", dest);
     return 0;
@@ -326,7 +325,7 @@ int main()
 
 #ifdef __REWRITE_STRLEN__
 
-//´´½¨ÁÙÊ±±äÁ¿
+// åˆ›å»ºä¸´æ—¶å˜é‡
 size_t my_strlen1(const char *src)
 {
     assert(src != NULL);
@@ -339,7 +338,7 @@ size_t my_strlen1(const char *src)
     return len;
 }
 
-//²»´´½¨ÁÙÊ±±äÁ¿£¬Ê¹ÓÃµİ¹é½øĞĞ¼ÆÊı
+// ä¸åˆ›å»ºä¸´æ—¶å˜é‡ï¼Œä½¿ç”¨é€’å½’è¿›è¡Œè®¡æ•°
 
 size_t my_strlen2(const char *src)
 {
@@ -367,17 +366,91 @@ size_t my_strlen3(const char *src)
     return end - start;
 }
 
-
-
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
     char a[] = "helloh world!";
-    int len; 
+    int len;
     len = my_strlen3(a);
-    //len = strlen(a);
+    // len = strlen(a);
     printf("%d\n", len);
     return 0;
 }
 
-
 #endif
+
+#ifdef __REWRITE__MYTEST__
+char *my_strcpy(char *dest, const char *src)
+{
+    assert(dest != NULL);
+    assert(src != NULL);
+
+    while (*src != '\0')
+    {
+        *dest++ = *src++;
+    }
+    *dest = '\0';
+    return dest;
+}
+
+char *my_strcat(char *dest, const char *src)
+{
+    assert(dest != NULL);
+    assert(src != NULL);
+    while (*dest != '\0')
+    {
+        *dest++;
+    }
+    while (*src != '\0')
+    {
+        *dest++ = *src++;
+    }
+    *dest = '\0';
+    return dest;
+}
+int strcmp
+
+// Test case 1: Concatenating two empty strings should result in an empty string
+void test_my_strcat_empty_strings()
+{
+    char dest[20] = "";
+    char src[10] = "";
+    my_strcat(dest, src);
+    assert(strcmp(dest, "") == 0);
+}
+
+// Test case 2: Concatenating an empty string and a non-empty string should result in the same string
+void test_my_strcat_empty_dest_string()
+{
+    char dest[20] = "";
+    char src[10] = "hello";
+    my_strcat(dest, src);
+    assert(strcmp(dest, "hello") == 0);
+}
+
+// Test case 3: Concatenating a non-empty string onto another non-empty string should result in the combined string
+void test_my_strcat_non_empty_strings()
+{
+    char dest[20] = "hello";
+    char src[10] = " world";
+    my_strcat(dest, src);
+    assert(strcmp(dest, "hello world") == 0);
+}
+
+// Test case 4: Passing NULL as either argument should terminate the program
+void test_my_strcat_null_args()
+{
+    char dest[20] = "";
+    char *src = NULL;
+    assert(my_strcat(dest, src) == NULL); // function should not return
+}
+
+int main(int argc, char **argv)
+{
+    test_my_strcat_empty_strings();
+    test_my_strcat_empty_dest_string();
+    test_my_strcat_non_empty_strings();
+    //test_my_strcat_null_args();
+    return 0;
+}
+
+#endif // __REWRITE__MYTEST__
