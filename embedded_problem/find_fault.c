@@ -5,7 +5,7 @@
 // #define NDEBUG
 #include <assert.h>
 
-#if 0
+#if 1
 /* //第三题unsigned char的取值范围是0-255永远也到不了500，所以下面的为死循环
 #define Max_CB 500
 void LmiQueryCSmd(StructMSgCB *pmsg)
@@ -29,7 +29,7 @@ void foo(void)
     int b = -20;
     c = a + b;
     (a + b > 6) ? puts("> 6") : puts("<= 6");
-    printf("%d\n", (a + b));
+    printf("%ld\n", (unsigned int)(a + b));
     printf("%ld\n", c);
 }
 
@@ -63,16 +63,16 @@ int main()
             }
         } */
 
-    // foo();
+     foo();
 
     //char c1 = getChar(7, 4);
     //char c2 = getChar(7, 3);
-    char c3 = getChar(7, -8);
+    //char c3 = getChar(7, -8);
     //char c4 = getChar(7, -8);
 
     // printf("c1=%d\n", c1);
     // printf("c2=%d\n", c2);
-    printf("c3=%d\n", c3);
+    //printf("c3=%d\n", c3);
     // printf("c4=%d\n", c4);
 
     return 0;
@@ -123,7 +123,7 @@ void test1(void) {
 void *getMemory2(void)
 {
     char p[] = "hello";
-    return p;
+    //return p;
 }
 
 void test2(void)

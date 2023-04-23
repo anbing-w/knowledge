@@ -12,7 +12,9 @@
         "xstring": "c",
         "xtr1common": "c",
         "xutility": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "initializer_list": "c",
+        "xiosbase": "c"
     },
     "idf.adapterTargetName": "esp32s3",
     "idf.openOcdConfigs": [
