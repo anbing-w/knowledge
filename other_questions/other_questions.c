@@ -67,6 +67,8 @@ int main(int argc, char **argv)
 }
 #endif
 
+
+#ifdef __EVER_TEST__
 // register 变量,会提高运行的效率
 int registerTest(void)
 {
@@ -121,4 +123,23 @@ int main(int argc, char **argv)
 }
 
 
+#endif // __EVER_TEST__
+
+int main(int argc, char* argv[])
+{
+    char *p;
+    const unsigned k = 1024*1024*1024*1.2;
+    printf("%x\n", k);
+    p = (char *)malloc(k);
+    if (p != NULL)
+    {
+        printf("OK!!\n");
+    }
+    else
+    {
+        printf("FAIL!!\n");
+    }
+    return 0;
+}
+ 
 

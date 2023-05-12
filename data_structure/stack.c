@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define __LIST__STACK__
+//#define __PARENTHESE_MATCH_
 
 #ifdef __ARRAY_STACK__
 
@@ -206,20 +206,127 @@ int main(int argc, char **argv)
     int i;
     Link_stack *p;
     p = createStack();
-    int input[] = {10,20,30,40,50,60};
-    int len = sizeof(input)/sizeof(input[0]);
+    int input[] = {10, 20, 30, 40, 50, 60};
+    int len = sizeof(input) / sizeof(input[0]);
     /*                       以依次入栈的方式创建整个栈                   */
     for (i = 0; i < len; i++)
     {
-        push_stack(p,input[i]);
+        push_stack(p, input[i]);
     }
     show_stack(p);
 
     /*                             出栈                                 */
     pop_stack(p);
     show_stack(p);
-    return 0;    
+    return 0;
+}
+
+#endif // __LIST__STACK__
+
+#ifdef __PARENTHESE_MATCH_
+
+int isMatched(char *str)
+{
+    int len = strlen(str);
+    char stack[len]; // 定义栈，存储左括号
+    int top = 0;     // 栈顶指针，指向最后一个入栈的元素
+    for (int i = 0; i < len; i++)
+    {
+        char ch = str[i];
+        switch (ch)
+        {
+            case '(':
+            case '[':
+            case '{':
+                stack[top++] = ch; // 左括号入栈
+                break;
+            case ')':
+                if (top == 0 || stack[--top] != '(') // 栈空或栈顶元素不是对应的左括号，匹配失败
+                    return 0;
+                break;
+            case ']':
+                if (top == 0 || stack[--top] != '[')
+                    return 0;
+                break;
+            case '}':
+                if (top == 0 || stack[--top] != '{')
+                    return 0;
+                break;
+            default:
+                break;
+        }
+    }
+    return top == 0; // 栈空，匹配成功
+}
+
+int main()
+{
+    // int a == 0;
+    char str[] = "(1(1[a5]))";
+    if (isMatched(str))
+        printf("match success!\n");
+    else
+        printf("match error!\n");
+    return 0;
+}
+
+#endif // __PARENTHESE_MATCH_
+
+
+int isMatch(char *str)
+{
+    int top = 0;
+    int len = strlen(str);
+    char stack[len];
+    
+    for (int i = 0; i < len; i++)
+    {
+        char ch = str[i];
+        switch (ch)
+        {
+            case '(':
+            case '[':
+            case '{':
+                stack[top++] = ch;
+                break;
+            case ')':
+                if (top == 0|| stack[--top] != '(') 
+                {
+                    return 0;
+                }
+                break;
+            case ']':
+                if (top == 0|| stack[--top] != '[') 
+                {
+                    return 0;
+                }
+                break;
+            case '}':
+                if (top == 0|| stack[--top] != '{') 
+                {
+                    return 0;
+                }            
+                break;
+            default:
+                break;
+        }
+    }
+    return top == 0;
+}
+
+int main()
+{
+    char buf[] = "({{[]}})";
+    if (isMatch(buf))
+    {
+        printf("matching successful!\n");
+    }
+    else
+    {
+        printf("matching failed!\n");
+    }
+    return 0;
 }
 
 
-#endif // __LIST__STACK__
+

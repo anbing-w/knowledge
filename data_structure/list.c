@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define _CIRCULAR_LINKED_LIST__
+#define __REVERSED_SINGLE_LIST_
 
 #ifdef _SINGLE_LINKED_LIST__
 // 定义结点类型
@@ -32,9 +32,12 @@ LinkedList listInit()
 // 头插入法建立单链表
 LinkedList linkListCreateH()
 {
+
     Node *L;
     L = (Node *)malloc(sizeof(Node)); // 申请头结点空间
     L->next = NULL;                   // 初始化一个空表
+
+    // Node *L = listInit(); //
 
     int x; // 链表数据域中的数据
     while (scanf("%d", &x) != EOF)
@@ -126,6 +129,43 @@ LinkedList linkedListDelete(LinkedList L, int x)
     pre->next = p->next; // 删除操作，将其前驱next指向后继
     free(p);
     return NULL;
+}
+
+int main(int argc, char **argv)
+{
+    LinkedList L = linkListCreateH();
+
+    printf("List created: ");
+    printList(L);
+
+    // 测试插入元素
+    Node *p = (Node *)malloc(sizeof(Node));
+    p->data = 100;
+    p->next = L->next;
+    L->next = p;
+    printf("Element inserted: ");
+    printList(L);
+
+    // 测试删除元素
+    Node *q = L->next->next;
+    L->next->next = q->next;
+    free(q);
+    printf("Element deleted: ");
+    printList(L);
+
+    // 测试清空链表
+    Node *r = L->next;
+    while (r != NULL)
+    {
+        Node *temp = r;
+        r = r->next;
+        free(temp);
+    }
+    L->next = NULL;
+    printf("List cleared: ");
+    printList(L);
+
+    return 0;
 }
 
 #endif
@@ -256,6 +296,13 @@ void printLine(line *head)
     }
 }
 
+int main(int argc, char **argv[])
+{
+    line *head = initLine();
+
+    return 0;
+}
+
 #endif
 
 #ifdef _CIRCULAR_LINKED_LIST__
@@ -280,6 +327,7 @@ list *initList()
         return head;
     }
 }
+
 /*
     //主函数重调用
     list *head = initList();
@@ -410,3 +458,95 @@ int display(list *head)
 }
 
 #endif
+
+
+#ifdef __REVERSED_SINGLE_LIST_
+
+// 定义单链表结构体
+typedef struct ListNode {
+    int val;  // 节点值
+    struct ListNode *next;  // 指向下一个节点的指针
+} ListNode;
+
+// 反转单链表
+ListNode* reverseList(ListNode* head) {
+    // 定义前驱节点和当前节点，初始时前驱节点为 NULL，当前节点为头节点
+    ListNode *prev = NULL, *curr = head;
+    // 当前节点不为空时循环
+    while (curr) {
+        // 保存下一个节点
+        ListNode *next = curr->next;
+        // 反转指针，将当前节点指向前驱节点
+        curr->next = prev;
+        // 更新前驱节点和当前节点
+        prev = curr;
+        curr = next;
+    }
+    // 返回新的头节点，即原单链表的尾节点
+    return prev;
+}
+
+// 创建新节点
+ListNode* createNode(int val) {
+    // 分配节点内存空间
+    ListNode* node = (ListNode*)malloc(sizeof(ListNode));
+    // 初始化节点值和指针
+    node->val = val;
+    node->next = NULL;
+    // 返回新节点
+    return node;
+}
+
+// 创建单链表
+ListNode* createList(int* nums, int size) {
+    if (size == 0) {  // 如果数组为空，返回 NULL
+        return NULL;
+    }
+    // 创建头节点，并将其值设置为数组的第一个元素
+    ListNode* head = createNode(nums[0]);
+    ListNode* curr = head;
+    // 遍历数组，创建新节点并将其插入到单链表的尾部
+    for (int i = 1; i < size; i++) {
+        curr->next = createNode(nums[i]);
+        curr = curr->next;
+    }
+    // 返回单链表的头节点
+    return head;
+}
+
+// 打印单链表
+void printList(ListNode* head) {
+    ListNode* curr = head;
+    while (curr) {
+        printf("%d -> ", curr->val);
+        curr = curr->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    // 测试代码
+    int nums[] = {1, 2, 3, 4, 5};
+    int size = sizeof(nums) / sizeof(nums[0]);
+    // 创建单链表，并打印原始的单链表
+    ListNode* head = createList(nums, size);
+    printf("Original list: ");
+    printList(head);
+    // 反转单链表，并打印反转后的单链表
+    head = reverseList(head);
+    printf("Reversed list: ");
+    printList(head);
+    // 释放单链表的内存空间
+    ListNode *tmp = NULL;
+    while (head) {
+        tmp = head;
+        head = head->next;
+        free(tmp);
+    }
+    return 0;
+}
+
+
+
+#endif // __REVERSED_SINGLE_LIST_
+

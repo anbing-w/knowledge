@@ -14,7 +14,16 @@
         "xutility": "c",
         "stdint.h": "c",
         "initializer_list": "c",
-        "xiosbase": "c"
+        "xiosbase": "c",
+        "cmath": "c",
+        "concepts": "c",
+        "exception": "c",
+        "ios": "c",
+        "istream": "c",
+        "iterator": "c",
+        "ostream": "c",
+        "streambuf": "c",
+        "utility": "c"
     },
     "idf.adapterTargetName": "esp32s3",
     "idf.openOcdConfigs": [

@@ -1,4 +1,5 @@
 #include "stdio.h"
+#include <string.h>
 
 #if 0
 void main(){
@@ -51,6 +52,7 @@ void main(){
 }
 #endif
 
+#if 0
 int main(int argc, char **argv)
 {
 	int a[3][4][5]; // 声明一个3x4x5的数组
@@ -77,4 +79,32 @@ int main(int argc, char **argv)
 			}
 		}
 	}
+}
+#endif
+
+int main()
+{
+	char str[] = "glad to";
+	int str2[] = {1,2,3};
+	char *p1 = str;
+	// char *p2 = str2;
+	int len11, len12;
+	int len21, len22;
+	p1++;
+	// p2++;
+
+	printf("%s\n", p1);
+	// printf("%s\n", p2);
+
+	len11 = strlen(str);
+	len12 = sizeof(str);
+
+	printf("strlen = %d, sizeof = %d\n", len11, len12);
+
+	// len21 = strlen(str2);
+	len22 = sizeof(str2);
+
+	printf("strlen = %d\n", len22);
+
+	return 0;
 }

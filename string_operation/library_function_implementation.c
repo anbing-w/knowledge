@@ -24,7 +24,7 @@
 
 // }
 
-int My_strcmp(const char *str1, const char *str2)
+int my_strcmp(const char *str1, const char *str2)
 {
     assert(NULL != str1);
     assert(NULL != str2);
@@ -93,7 +93,7 @@ char *my_strstr(const char *str1, const char *str2)
     // 如果子串一开始就是空，那么直接返回母串
     if (*str2 == '\0')
     {
-        return *str1;
+        return str1;
     }
 
     while (*cur != '\0')
@@ -110,7 +110,6 @@ char *my_strstr(const char *str1, const char *str2)
         {
             return cur;
         }
-
         cur++;
     }
 
@@ -407,49 +406,114 @@ char *my_strcat(char *dest, const char *src)
     *dest = '\0';
     return dest;
 }
-int strcmp
-
-// Test case 1: Concatenating two empty strings should result in an empty string
-void test_my_strcat_empty_strings()
+int my_strcmp(const char *s1, const char *s2)
 {
-    char dest[20] = "";
-    char src[10] = "";
-    my_strcat(dest, src);
-    assert(strcmp(dest, "") == 0);
+    assert(s1 != NULL);
+    assert(s2 != NULL);
+    while (*s1 && *s2 && *s1 == *s2)
+    {
+        *s1++;
+        *s2++;
+    }
+    if (*s1 == '\0' && *s2 == '\0')
+    {
+        return 0;
+    }
+    else
+    {
+        // printf("%d\n", (*s1 - *s2));
+        /*************************************************************************
+         *              为什么返回值是1而不是-1，
+         *         三目运算符首先计算的是expression1，非零值即为真，与符号无关
+                printf("%d\n", ((2 - 3)?1:-1));
+        **************************************************************************/
+        return (*s1 < *s2) ? 1 : -1;
+    }
+    // return *s1 - *s2;
 }
 
-// Test case 2: Concatenating an empty string and a non-empty string should result in the same string
-void test_my_strcat_empty_dest_string()
+int my_strlen(const char *src)
 {
-    char dest[20] = "";
-    char src[10] = "hello";
-    my_strcat(dest, src);
-    assert(strcmp(dest, "hello") == 0);
+    assert(src != NULL);
+    int count = 0;
+    while (*src++)
+    {
+        count++;
+    }
+    return count;
 }
 
-// Test case 3: Concatenating a non-empty string onto another non-empty string should result in the combined string
-void test_my_strcat_non_empty_strings()
+char *my_strstr(const char *str1, const char *str2)
 {
-    char dest[20] = "hello";
-    char src[10] = " world";
-    my_strcat(dest, src);
-    assert(strcmp(dest, "hello world") == 0);
+    //assert(str1 && str2);
+    if (str1 == NULL || str2 == NULL)
+    {
+        return NULL;
+    }
+    const char *s1 = NULL;
+    const char *s2 = NULL;
+    const char *cur = str1;
+
+    // 如果子串一开始就是空，那么直接返回母串
+    if (*str2 == '\0')
+    {
+        return (char *)str1;
+        // return str1;
+    }
+    while (*cur != '\0')
+    {
+        s1 = cur;
+        s2 = str2;
+        while ((*s1 == *s2) && *s1 && *s2) // s1和s2不能走到\0
+        {
+            s1++;
+            s2++;
+        }
+        if (*s2 == '\0')
+        {
+            return (char *)cur;
+            // return cur;
+        }
+        cur++;
+    }
+    return NULL;
 }
 
-// Test case 4: Passing NULL as either argument should terminate the program
-void test_my_strcat_null_args()
+char *my_strstr2(const char *str1, const char *str2)
 {
-    char dest[20] = "";
-    char *src = NULL;
-    assert(my_strcat(dest, src) == NULL); // function should not return
+    if (str1 == NULL || str2 == NULL)
+    {
+        return NULL;
+    }
+    const char *s1 = NULL, *s2 = NULL, *cur = str1;
+    if (*str2 == '\0')
+    {
+        return (char *)str1;
+    }
+    while (*cur != '\0')
+    {
+        s1 = cur;
+        s2 = str2;
+        while (*s1 == *s2 && *s1 != '\0'&& *s2 != '\0')
+        {
+            s1++;
+            s2++;
+        }
+        if (*s2 == '\0')
+        {
+            return (char *)cur;
+        }
+        cur++;
+    }
+    return NULL;
 }
 
 int main(int argc, char **argv)
 {
-    test_my_strcat_empty_strings();
-    test_my_strcat_empty_dest_string();
-    test_my_strcat_non_empty_strings();
-    //test_my_strcat_null_args();
+    // Test case 1: Empty string
+    const char s1[] = "abcdefghijklmnopqrstuvwxyzABCDEF";
+    const char s2[] = "bc";
+    printf("Test case 1: %s\n", my_strstr2(s1, s2)); // expected output: 0
     return 0;
 }
 
