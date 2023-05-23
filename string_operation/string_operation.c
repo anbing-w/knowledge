@@ -555,10 +555,10 @@ char *FindMaxCommonStr(char *shortstring, char *longstring)
     {
         for (int j = 0; j <= len - i; j++) // 遍历从 j 开始长度为 i 的子串
         {
-            char *temp_str = (char *)malloc(256);// 创建一个临时字符串，长度为 256
-            memcpy(temp_str, &shortstring[j], i);// 将 j 开始长度为 i 的子串复制到临时字符串中
-            temp_str[i] = '\0';// 在临时字符串的结尾添加 '\0' 字符，表示字符串的结束
-            if (strstr(longstring, temp_str) != NULL)// 判断临时字符串是否是长字符串的子串
+            char *temp_str = (char *)malloc(256);     // 创建一个临时字符串，长度为 256
+            memcpy(temp_str, &shortstring[j], i);     // 将 j 开始长度为 i 的子串复制到临时字符串中
+            temp_str[i] = '\0';                       // 在临时字符串的结尾添加 '\0' 字符，表示字符串的结束
+            if (strstr(longstring, temp_str) != NULL) // 判断临时字符串是否是长字符串的子串
             {
                 return temp_str; // 如果是，则返回临时字符串
             }
@@ -569,18 +569,66 @@ char *FindMaxCommonStr(char *shortstring, char *longstring)
     return NULL;
 }
 
+//
+int strToInt(const char *str)
+{
+    int num = 0;
+    assert(str);
+    while (*str)
+    {
+        num = num * 10 + *str - '0';
+        // num = num * 10 + (*str - 48);
+        str++;
+    }
+    return num;
+}
+
+void intToString(int num, char *str)
+{
+    int i = 0, j = 0, k = 0;
+    char temp;
+
+    if (num < 0)
+    {
+        str[j++] = '-';
+        num = -num;
+    }
+
+    while (num)
+    {
+        str[i++] = num % 10 + '0';
+        num /= 10;
+    }
+
+    str[i] = '\0';
+
+    k = num < 0 ? 1 : 0;
+    while (k < j)
+    {
+        temp = str[k];
+        str[k] = str[j];
+        str[j] = temp;
+        k++;
+        j--;
+    }
+}
+
 int main()
 {
-    char str1[100], str2[100];
-    char *result = NULL;
+    // char str1[100], str2[100];
+    // char *result = NULL;
 
-    printf("请输入第一个字符串：");
-    scanf("%s", str1);
+    // printf("请输入第一个字符串：");
+    // scanf("%s", str1);
 
-    printf("请输入第二个字符串：");
-    scanf("%s", str2);
-    result = FindMaxCommonStr(str1, str2);
-    printf("%s", result);
+    // printf("请输入第二个字符串：");
+    // scanf("%s", str2);
+    // result = FindMaxCommonStr(str1, str2);
+    // printf("%s", result);
+
+    char str[] = "A";
+    int num = strToInt(str);
+    printf("%d", num);
 
     return 0;
 }

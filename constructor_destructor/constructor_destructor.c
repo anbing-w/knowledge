@@ -1,20 +1,26 @@
 #include <stdio.h>
 
 
+
+// void before() __attribute__((constructor));
+// void after() __attribute__((destructor));
+
+
 /**
- * @brief constructor --¹¹Ôìº¯Êı£»destructor--Îö¹¹º¯Êı
+ * @brief attributeå¯ä»¥è®¾ç½®ï¼Œå˜é‡å±æ€§ï¼Œå‡½æ•°å±æ€§å’Œç±»å‹å±æ€§
  * 
  */
 
-__attribute((constructor)) void before_main()
+__attribute__((constructor)) void before_main()
 {
     printf("%s\n", __FUNCTION__);
 }
 
-__attribute((destructor)) void after_main()
+__attribute__((destructor)) void after_main()
 {
     printf("%s\n", __FUNCTION__);
 }
+
 
 
 int main()

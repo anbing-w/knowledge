@@ -1,5 +1,7 @@
 #include "stdio.h"
 #include <string.h>
+#include <malloc.h>
+
 
 #if 0
 void main(){
@@ -82,6 +84,8 @@ int main(int argc, char **argv)
 }
 #endif
 
+
+#if 0
 int main()
 {
 	char str[] = "glad to";
@@ -108,3 +112,34 @@ int main()
 
 	return 0;
 }
+#endif
+
+
+int main()
+{
+	//5行2列的数组
+	int **p = (int **)malloc(sizeof(int *) * 5);
+	for (int i = 0; i < 5; ++i)
+	{
+		p[i] = (int *)malloc(sizeof(int) * 2);
+	}
+	for (int i = 0; i < 5; ++i)
+	{
+		for (int j = 0; j < 2; ++j)
+		{
+			//输出数组每个元素地址
+			printf("%p\t", &p[i][j]);
+			if (j == 1)
+			{
+				printf("\n");
+			}
+			
+		}
+	}
+	for (int i = 0; i < 5; ++i)
+		free(p[i]);
+	free(p);
+    return 0;
+}
+
+

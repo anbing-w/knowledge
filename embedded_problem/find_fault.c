@@ -20,7 +20,7 @@ void LmiQueryCSmd(StructMSgCB *pmsg)
 #define LEN_MAX 256
 /**
  * @brief 整型提升
- * 
+ *
  */
 void foo(void)
 {
@@ -63,87 +63,18 @@ int main()
             }
         } */
 
-     foo();
+    foo();
 
-    //char c1 = getChar(7, 4);
-    //char c2 = getChar(7, 3);
-    //char c3 = getChar(7, -8);
-    //char c4 = getChar(7, -8);
+    // char c1 = getChar(7, 4);
+    // char c2 = getChar(7, 3);
+    // char c3 = getChar(7, -8);
+    // char c4 = getChar(7, -8);
 
     // printf("c1=%d\n", c1);
     // printf("c2=%d\n", c2);
-    //printf("c3=%d\n", c3);
+    // printf("c3=%d\n", c3);
     // printf("c4=%d\n", c4);
 
     return 0;
 }
 #endif
-/**
- * @brief Get the Memory1 object 函数参数是值传递，对形参的改变不影响实参
- *
- * @param p
- */
-void getMemory1(char *p)
-{
-    p = (char *)malloc(100);
-}
-
-void test1(void)
-{
-    char *str = NULL;
-    getMemory1(str);
-    strcmp(str, "hello");
-    printf(str);
-}
-
-/****************************************修改*********************************************
-void getMemory1(char** p) {
-    if (*p != NULL) {
-        free(*p);
-        }
-    *p = (char*)malloc(100);
-}
-
-void test1(void) {
-    char* str = NULL;
-    getMemory1(&str);
-    strcpy(str, "hello");
-    printf("%s", str);
-    free(str);
-    str = NULL;
-}
-******************************************************************************************/
-
-/**
- * @brief Get the Memory2 objectp 是一个局部变量，其作用域仅限于 getMemory2 函数内部。
- *        在函数返回后，p 将被销毁，其指向的内存空间也将无法访问。
- *        因此，在 test2 函数中，指针变量 str 指向了一段无法访问的内存空间
- * @return void*
- */
-void *getMemory2(void)
-{
-    char p[] = "hello";
-    //return p;
-}
-
-void test2(void)
-{
-    char *str = NULL;
-    str = getMemory2();
-    printf(str);
-}
-
-/****************************************修改*********************************************
-char* getMemory2(void) {
-    char* p = (char*)malloc(6);
-    strcpy(p, "hello");
-    return p;
-}
-
-void test2(void) {
-    char* str = NULL;
-    str = getMemory2();
-    printf("%s", str);
-    free(str);
-}
-******************************************************************************************/

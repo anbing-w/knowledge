@@ -23,7 +23,9 @@
         "iterator": "c",
         "ostream": "c",
         "streambuf": "c",
-        "utility": "c"
+        "utility": "c",
+        "compare": "c",
+        "cstdlib": "c"
     },
     "idf.adapterTargetName": "esp32s3",
     "idf.openOcdConfigs": [

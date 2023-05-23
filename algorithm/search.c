@@ -31,6 +31,7 @@ int find_normal(const int *num, int size, int target)
  * @param target 需要查找的值
  * @return int
  */
+
 int binarySearch1(int num[], int size, int target)
 {
     int left = 0;

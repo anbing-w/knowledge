@@ -43,11 +43,11 @@ void bubbleSort(int *arr, int len)
         {
             if (arr[j] > arr[j + 1]) // 如果前一个元素大于后一个元素
             {
-/*                 
-                temp = arr[j]; // 交换两个元素的位置
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
- */
+                /*
+                                temp = arr[j]; // 交换两个元素的位置
+                                arr[j] = arr[j + 1];
+                                arr[j + 1] = temp;
+                 */
                 swap2(&arr[j], &arr[j + 1]);
                 flag = 1; // 标记当前有交换操作
             }
@@ -74,8 +74,12 @@ void selection_sort(int arr[], int len)
     {
         int min = i;
         for (j = i + 1; j < len; j++) // 走訪未排序的元素
-            if (arr[j] < arr[min])    // 找到目前最小值
-                min = j;              // 紀錄最小值
+        {
+            if (arr[j] < arr[min]) // 找到目前最小值
+            {
+                min = j; // 紀錄最小值
+            }
+        }
         if (min != i)
         {
             swap(&arr[min], &arr[i]); // 做交換
@@ -111,12 +115,6 @@ void insertion_sort(int arr[], int len)
         在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；
         递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序；
 **********************************************************************************************/
-/* void swap(int *x, int *y)
-{
-    int t = *x;
-    *x = *y;
-    *y = t;
-} */
 
 /**
 
@@ -175,7 +173,7 @@ int main()
     }
     printf("\n");
 
-    bubbleSort(arr, len);
+    selection_sort(arr, len);
 
     printf("Array after sorting: ");
     for (i = 0; i < len; i++)

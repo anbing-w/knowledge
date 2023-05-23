@@ -382,12 +382,12 @@ char *my_strcpy(char *dest, const char *src)
 {
     assert(dest != NULL);
     assert(src != NULL);
-
+    char *pdest = dest;
     while (*src != '\0')
     {
-        *dest++ = *src++;
+        *pdest++ = *src++;
     }
-    *dest = '\0';
+    *pdest = '\0';
     return dest;
 }
 
