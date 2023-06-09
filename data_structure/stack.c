@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//#define __PARENTHESE_MATCH_
+// #define __PARENTHESE_MATCH_
 
 #ifdef __ARRAY_STACK__
 
@@ -225,7 +225,7 @@ int main(int argc, char **argv)
 
 #ifdef __PARENTHESE_MATCH_
 
-int isMatched(char *str)
+bool isMatched(char *str)
 {
     int len = strlen(str);
     char stack[len]; // 定义栈，存储左括号
@@ -242,21 +242,21 @@ int isMatched(char *str)
                 break;
             case ')':
                 if (top == 0 || stack[--top] != '(') // 栈空或栈顶元素不是对应的左括号，匹配失败
-                    return 0;
+                    return false;
                 break;
             case ']':
                 if (top == 0 || stack[--top] != '[')
-                    return 0;
+                    return false;
                 break;
             case '}':
                 if (top == 0 || stack[--top] != '{')
-                    return 0;
+                    return false;
                 break;
             default:
                 break;
         }
     }
-    return top == 0; // 栈空，匹配成功
+    return true; // 栈空，匹配成功
 }
 
 int main()
@@ -272,43 +272,42 @@ int main()
 
 #endif // __PARENTHESE_MATCH_
 
-
 int isMatch(char *str)
 {
     int top = 0;
     int len = strlen(str);
     char stack[len];
-    
+
     for (int i = 0; i < len; i++)
     {
         char ch = str[i];
         switch (ch)
         {
-            case '(':
-            case '[':
-            case '{':
-                stack[top++] = ch;
-                break;
-            case ')':
-                if (top == 0|| stack[--top] != '(') 
-                {
-                    return 0;
-                }
-                break;
-            case ']':
-                if (top == 0|| stack[--top] != '[') 
-                {
-                    return 0;
-                }
-                break;
-            case '}':
-                if (top == 0|| stack[--top] != '{') 
-                {
-                    return 0;
-                }            
-                break;
-            default:
-                break;
+        case '(':
+        case '[':
+        case '{':
+            stack[top++] = ch;
+            break;
+        case ')':
+            if (top == 0 || stack[--top] != '(')
+            {
+                return 0;
+            }
+            break;
+        case ']':
+            if (top == 0 || stack[--top] != '[')
+            {
+                return 0;
+            }
+            break;
+        case '}':
+            if (top == 0 || stack[--top] != '{')
+            {
+                return 0;
+            }
+            break;
+        default:
+            break;
         }
     }
     return top == 0;
@@ -327,6 +326,3 @@ int main()
     }
     return 0;
 }
-
-
-

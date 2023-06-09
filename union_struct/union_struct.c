@@ -4,6 +4,11 @@
 #include <stdint.h>
 #include <assert.h>
 
+#define VAROFFSET(type,member) (size_t)(&((type*)0->member))
+
+#define __MEMORY_ALIGNMENT__
+
+#ifdef __OTHERS_QUESTION__
 // 计算结构体的首地址
 #define VAROFFSET(type, mem) ((size_t)(&((type *)0)->mem)) // 结构体成员相对于首地址偏移量
 
@@ -66,16 +71,17 @@ typedef struct myStruct
     char a, b, c, d;
 } myStruct;
 
+
+
+
 int main(int argc, char **argv)
 {
 
-    //size_t i;
-    myStruct P = {'A', 'B', 'C', 'D'};
+    // size_t i;
+    //myStruct P = {'A', 'B', 'C', 'D'};//结构体一次性赋值
 
-    printf("%c\n", P.a);
-    printf("%c\n", P.b);
-    printf("%c\n", P.c);
-    printf("%c\n", P.d);
+
+
 
     // 测试结构体成员地址和推算结构体的地址
     /*  int size1 = 0;
@@ -110,5 +116,67 @@ int main(int argc, char **argv)
     // U4.c[3] = 0x01;
     // printf("%#p\n", &U4.c[3]);
     // printf("%x\n", U4.i);
-     return 0;
+    return 0;
 }
+
+#endif // __OTHERS_QUESTIO
+
+
+
+#ifdef __MEMORY_ALIGNMENT__
+#pragma pack (4)
+typedef struct myStruct1
+{
+    char a;
+    short int b;
+    char c;
+    int d;
+}myStruct1;
+//#pragma pack ()
+typedef struct myStruct2
+{
+    char a;
+    short int b;
+    char c;
+    int d;
+    long long e;
+}myStruct2;
+
+typedef union myUnion
+{
+    double a;
+    int b[20];
+}myUnion;
+
+
+typedef struct BBB
+{
+    long num;
+    char *name;
+    short int data;
+    char ha;
+    short ba[5];
+}*p,BBB;
+
+
+int main()
+{
+    myStruct1 myStruct;
+    myStruct2 myStruct2;
+    myUnion myUnion;
+
+    BBB bb;
+
+    int len1 = sizeof(myStruct);
+    int len2 = sizeof(myStruct2);
+    int len3 = sizeof(myUnion);
+    int len4 = sizeof(bb);
+    printf("%d\n", len1);
+    printf("%d\n", len2);
+    printf("%d\n", len3);
+    printf("%d\n", len4);
+    return 0;
+}
+
+#endif // __MEMORY_ALIGNMENT
+

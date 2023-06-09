@@ -25,7 +25,17 @@
         "streambuf": "c",
         "utility": "c",
         "compare": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "stdbool.h": "c",
+        "stdlib.h": "c",
+        "stdio.h": "c",
+        "string.h": "c",
+        "atomic": "c",
+        "bit": "c",
+        "iosfwd": "c",
+        "limits": "c",
+        "xstddef": "c",
+        "cctype": "c"
     },
     "idf.adapterTargetName": "esp32s3",
     "idf.openOcdConfigs": [

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-#define __REWRITE__MYTEST__
+#define __MY_ATOI__
 
 #ifdef __REWRITE_STRCMP__
 /**
@@ -83,11 +83,18 @@ int main()
     }
 } */
 
+/**
+ * @brief 找到相同的，返回
+ *
+ * @param str1
+ * @param str2
+ * @return char*
+ */
 char *my_strstr(const char *str1, const char *str2)
 {
     assert(str1 && str2);
-    const char *s1 = str1;
-    const char *s2 = str2;
+    const char *s1 = NULL;
+    const char *s2 = NULL;
     const char *cur = str1;
 
     // 如果子串一开始就是空，那么直接返回母串
@@ -342,10 +349,9 @@ size_t my_strlen1(const char *src)
 size_t my_strlen2(const char *src)
 {
     assert(src != NULL);
-    int len = 0;
     if (*src++)
     {
-        return my_strlen1(src) + 1;
+        return my_strlen2(src) + 1;
     }
     else
     {
@@ -445,7 +451,7 @@ int my_strlen(const char *src)
 
 char *my_strstr(const char *str1, const char *str2)
 {
-    //assert(str1 && str2);
+    // assert(str1 && str2);
     if (str1 == NULL || str2 == NULL)
     {
         return NULL;
@@ -494,7 +500,7 @@ char *my_strstr2(const char *str1, const char *str2)
     {
         s1 = cur;
         s2 = str2;
-        while (*s1 == *s2 && *s1 != '\0'&& *s2 != '\0')
+        while (*s1 == *s2 && *s1 != '\0' && *s2 != '\0')
         {
             s1++;
             s2++;
@@ -518,3 +524,79 @@ int main(int argc, char **argv)
 }
 
 #endif // __REWRITE__MYTEST__
+
+#ifdef __MY_ATOI__
+
+/**
+ * @brief 字符串转换为整型
+ *
+ * @param str
+ * @return int
+ */
+int myAtoi(char *str)
+{
+    if (str == NULL)
+    {
+        printf("Invalid input");
+        return -1;
+    }
+    if (*str == ' ')
+    {
+        str++;
+    }
+    int nSign = (*str == '-') ? -1 : 1;
+    if ((*str == '+') || (*str == '-'))
+    {
+        str++;
+    }
+    int nResult = 0;
+
+    while (*str >= '0' && *str <= '9')
+    {
+        nResult = nResult * 10 + (*str - '0');
+        str++;
+    }
+    while (*str == ' ')
+    {
+        str++;
+    }
+    if (*str != '\0')
+    {
+        printf("Invalid input!");
+        return -1;
+    }
+    return nResult * nSign;
+}
+
+char *myItoa(int num, char *str, int radix)
+{
+    char *ptr = str;
+    int temp;
+    int sign = num, i = 0, j = 0;
+    if (sign < 0)
+    {
+        num = -num;
+    }
+    while (num)
+    {
+        // 先存储低位
+        *ptr++ = num % radix + '0';
+        num /= radix;
+        // 小于进制数，直接放进去
+        if (num < radix)
+        {
+            *ptr++ = num + '0';
+            break;
+        }
+    }
+}
+
+int main()
+{
+    char buf[] = "-12345";
+    int result = myAtoi(buf);
+    printf("%d", result);
+    return 0;
+}
+
+#endif // __MY_ATOI__
