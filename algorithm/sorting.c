@@ -160,6 +160,51 @@ void quick_sort(int arr[], int len)
     quick_sort_recursive(arr, 0, len - 1);
 }
 
+void swapNum(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void bubbleSort2(int *num, int len)
+{
+    for (int i = 0; i < len - 1; i++)
+    {
+        int flag = 0;
+        for (int j = 0; j < len - i - 1; j++)
+        {
+            if (num[j] > num[j + 1])
+            {
+                swap(&num[j], &num[j + 1]);
+                flag = 1;
+            }
+
+            if (flag == 0)
+            {
+                break;
+            }
+        }
+    }
+}
+
+void selectionSort(int *num, int len)
+{
+    int min = 0;
+    for (int i = 0; i < len - 1; i++)
+    {
+        min = i;
+        for (int j = i; j < len; j++)
+        {
+            if (num[min] > num[j])
+            {
+                min = j;
+            }
+        }
+        swag(&num[min], &num[i]);
+    }
+}
+
 int main()
 {
     int arr[] = {5, 2, 8, 3, 1, 9, 4, 6, 7};
@@ -173,7 +218,7 @@ int main()
     }
     printf("\n");
 
-    selection_sort(arr, len);
+    bubbleSort2(arr, len);
 
     printf("Array after sorting: ");
     for (i = 0; i < len; i++)
@@ -183,3 +228,5 @@ int main()
     printf("\n");
     return 0;
 }
+
+

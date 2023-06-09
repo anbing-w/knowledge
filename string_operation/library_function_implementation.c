@@ -568,34 +568,71 @@ int myAtoi(char *str)
     return nResult * nSign;
 }
 
-char *myItoa(int num, char *str, int radix)
+/**
+ * @brief 字符串翻转
+ *
+ * @param str
+ * @param len
+ */
+void reverseStr(char *str, int len)
 {
-    char *ptr = str;
-    int temp;
-    int sign = num, i = 0, j = 0;
-    if (sign < 0)
+    int start = 0;
+    int end = len - 1;
+    while (start < end)
     {
+        char temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+        start++;
+        end--;
+    }
+}
+
+/**
+ * @brief 
+ * 
+ * @param num 
+ * @param str 
+ */
+void myItoa(int num, char *str)
+{
+    int i = 0;
+    int isNegative = 0;
+
+    // 处理负数情况
+    if (num < 0)
+    {
+        isNegative = 1;
         num = -num;
     }
-    while (num)
+
+    // 将每个数字按照位数转换为字符
+    while (num != 0)
     {
-        // 先存储低位
-        *ptr++ = num % radix + '0';
-        num /= radix;
-        // 小于进制数，直接放进去
-        if (num < radix)
-        {
-            *ptr++ = num + '0';
-            break;
-        }
+        int digit = num % 10;
+        str[i++] = '0' + digit;
+        num /= 10;
     }
+
+    // 处理负数的符号位
+    if (isNegative)
+    {
+        str[i++] = '-';
+    }
+
+    str[i] = '\0';
+
+    // 反转字符串
+    reverseStr(str, i);
 }
 
 int main()
 {
-    char buf[] = "-12345";
-    int result = myAtoi(buf);
-    printf("%d", result);
+    //char buf[] = "-12345";
+    int num = -145;
+    char buf[10];
+    myItoa(num,buf);
+    printf("%s", buf);
     return 0;
 }
 
